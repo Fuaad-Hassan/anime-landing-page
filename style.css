@@ -141,6 +141,7 @@ body {
 	height: 380px;
 	transform-style: preserve-3d;
 	animation: spin 20s linear infinite;
+	will-change: transform;
 }
 
 .carousel:hover {

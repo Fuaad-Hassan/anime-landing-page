@@ -82,4 +82,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   changeTheme();
+
+  // Lazy-load highlight videos
+  const highlightVideos = document.querySelectorAll('.highlight-media video');
+  if (highlightVideos.length > 0) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.play().catch(() => {});
+        } else {
+          entry.target.pause();
+        }
+      });
+    }, { rootMargin: '0px 0px 200px 0px', threshold: 0.1 });
+
+    highlightVideos.forEach(video => {
+      videoObserver.observe(video);
+    });
+  }
 });
