@@ -25,16 +25,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     updateMedia(
-      isDark ? "Dark Mode V.mp4" : "Light Mode V.mp4",
+      isDark ? "https://res.cloudinary.com/chhytxqs/video/upload/f_auto,q_auto/v1789471609/Dark_Mode_V.mp4" : "https://res.cloudinary.com/chhytxqs/video/upload/f_auto,q_auto/v1789471625/Light_Mode_V.mp4",
+      isDark ? "https://res.cloudinary.com/chhytxqs/video/upload/f_auto,q_auto/v1789471609/Dark_Mode_V.jpg" : "https://res.cloudinary.com/chhytxqs/video/upload/f_auto,q_auto/v1789471625/Light_Mode_V.jpg",
       isDark ? "Dark Mode Music.mp3" : "Main Page Music.mp3"
     );
   }
 
-  function updateMedia(videoFile, musicFile) {
+  function updateMedia(videoUrl, posterUrl, musicFile) {
     if (heroVideo) {
+      heroVideo.poster = posterUrl;
       const vSrc = heroVideo.querySelector("source");
       if (vSrc) {
-        vSrc.src = "src/Video/" + videoFile;
+        vSrc.src = videoUrl;
         heroVideo.load();
         if (canPlayAudio) {
           heroVideo.play().catch(() => {});
